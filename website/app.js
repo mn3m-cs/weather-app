@@ -1,6 +1,6 @@
 // Personal API Key for OpenWeatherMap API
 api_key = '5b79a192d61ee9d215bf0e6ced037b63';
-url = 'http://api.openweathermap.org/data/2.5/weather?zip=';
+url = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip=';
 let date = new Date();
 let currentDate = date.getMonth() + 1 + '/'+ date.getDate() +'/'+date.getFullYear();
 
