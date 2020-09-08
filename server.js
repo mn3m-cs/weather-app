@@ -29,18 +29,18 @@ function listening(){
 }
 
 // Initialize all route with a callback function
-app.get('/data',function(req, res){
+app.get('/data',(req, res)=>{
     res.send(projectData)
+    console.log('Get request')
 })
 // Callback function to complete GET '/all'
 
 // Post Route
-app.post('/',addCity) 
-
-function addCity(req, res){
-    projectData.temp = req.body.temp;
-    projectData.date = req.body.main.date;
+app.post('/',(req, res)=>{
+    projectData.temp = req.body.main.temp;
+    projectData.date = req.body.date;
     projectData.userFeelings = req.body.userFeelings;
-    console.log('added')
+    console.log('post request')
+    console.log(projectData)
     res.end();
-}
+});

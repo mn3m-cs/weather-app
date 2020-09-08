@@ -44,31 +44,33 @@ const postData= async (url='',data={} ) => {
 /* Function to GET Project Data */
 
 const  refresh = async() =>{
+    console.log('refresh div with new data');
     const projectData = await getData('/data');
-    document.querySelector('.data').innerHTML='';
-    div = document.createElement('div');
-    div.classList.add('data');
+    console.log(projectData);
+    data = document.getElementById('data');
+    data.innerHTML='';
     date = document.createElement('p');
-    date.innerHTML = `${projectData.date}`;
+    date.innerHTML = `Date: ${projectData.date}`;
+    data.appendChild(date);
     temp = document.createElement('p');
-    temp.innerHTML = `${projectData.temp}`;
+    temp.innerHTML = `Temprature: ${projectData.temp}`;
+    data.appendChild(temp);
     userFeelings = document.createElement('p');
-    userFeelings.innerHTML = `${projectData.userFeelings}`;
-    div.appendChild(date);
-    div.appendChild(temp);
-    div.appendChild(userFeelings);
+    userFeelings.innerHTML = `You feels: ${projectData.userFeelings}`;
+    data.appendChild(userFeelings);
     
 }
 const generate = async() => {
     const feel = document.getElementById('feel').value;
     const zip = document.getElementById('zip').value;
-    const res = await fetch(`${url}${zip}&appid=${api_key}`);
-    console.log(res);
+    const response = await fetch(`${url}${zip}&appid=${api_key}`);
+    console.log(response);
     try {
-    const data = await res.json();
+    const data = await response.json();
     data.userFeelings = feel;
     data.date = currentDate;
     await postData('/',data);
+    //document.querySelector('data').innerHTML='';
     refresh();
 }catch (error){
     console.error(error)
