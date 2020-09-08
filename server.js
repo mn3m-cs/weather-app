@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded(  { extended:false }));
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
@@ -29,16 +29,18 @@ function listening(){
 }
 
 // Initialize all route with a callback function
-app.get('/all',function(req, res){
+app.get('/data',function(req, res){
     res.send(projectData)
 })
 // Callback function to complete GET '/all'
 
 // Post Route
-app.post('/add_city',addCity) 
+app.post('/',addCity) 
 
 function addCity(req, res){
-    console.log(req.body);
-    projectData.push(req.body);
-    
+    projectData.temp = req.body.temp;
+    projectData.date = req.body.main.date;
+    projectData.userFeelings = req.body.userFeelings;
+    console.log('added')
+    res.end();
 }
