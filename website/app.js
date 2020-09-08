@@ -31,7 +31,7 @@ const postData= async (url='',data={} ) => {
         body: JSON.stringify(data)
 
     });
-    /*
+    
     try{
         const newData = await response.json();
         console.log(newData);
@@ -39,7 +39,7 @@ const postData= async (url='',data={} ) => {
         
     }catch(error){
         console.error(error);
-    }*/
+    }
 }
 /* Function to GET Project Data */
 
